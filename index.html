@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="lala.css">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" class="display" disabled />
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="toggleSign()">+/-</button>
+            <button onclick="calculatePercentage()">%</button>
+            <button class="operation" onclick="appendToDisplay('/')">÷</button>
+      
+            <button class="numeric" onclick="appendToDisplay('7')">7</button>
+            <button class="numeric" onclick="appendToDisplay('8')">8</button>
+            <button class="numeric" onclick="appendToDisplay('9')">9</button>
+            <button class="operation" onclick="appendToDisplay('*')">×</button>
+      
+            <button class="numeric" onclick="appendToDisplay('4')">4</button>
+            <button class="numeric" onclick="appendToDisplay('5')">5</button>
+            <button class="numeric" onclick="appendToDisplay('6')">6</button>
+            <button class="operation" onclick="appendToDisplay('-')">−</button>
+      
+            <button class="numeric" onclick="appendToDisplay('1')">1</button>
+            <button class="numeric" onclick="appendToDisplay('2')">2</button>
+            <button class="numeric" onclick="appendToDisplay('3')">3</button>
+            <button class="operation" onclick="appendToDisplay('+')">+</button>
+      
+            <button class="numeric zero" onclick="appendToDisplay('0')">0</button>
+            <button class="numeric" onclick="appendToDisplay('.')">.</button>
+            <button class="equals operation" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+    <script>
+        const display = document.getElementById('display');
+        function appendToDisplay(value) {
+            display.value += value;
+        }
+        function clearDisplay() {
+            display.value = '';
+        }
+        function toggleSign() {
+            if (display.value) {
+                display.value = display.value.startsWith('-') 
+                ? display.value.slice(1) 
+                : '-' + display.value;
+            }
+        }
+        function calculatePercentage() {
+            if (display.value) {
+                display.value = (parseFloat(display.value) / 100).toString();
+            }
+        }
+        function calculateResult() {
+            try {
+                display.value = eval(display.value);
+            } catch {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
+
